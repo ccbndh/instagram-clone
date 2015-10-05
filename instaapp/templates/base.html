@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{#    <link rel="shortcut icon" type="image/png" href="{% static 'images/fa.' %}"/>#}
+    <link type="image/x-icon" rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <title>{% block title %}Instagram clone{% endblock %}</title>
+</head>
+
+<body>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+
+</body>
+</html>
