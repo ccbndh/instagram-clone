@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+{% block title %}Instagram clone - signin{% endblock %}
 {% block content %}
 
     <div class="container">
 
         <form class="form-signin" method="POST" action="{% url 'instaapp:login' %}">{% csrf_token %}
             <h2 class="form-signin-heading">Please sign in</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
+            <label for="inputUsername" class="sr-only">Email address</label>
             <input type="hidden" name="login" class="form-control" value="1">
-            <input type="text" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <input type="text" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
 
