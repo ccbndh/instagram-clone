@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'taggit',
     'instaapp',
     'easy_thumbnails',
+    'image_cropping',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,3 +104,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = 'static'
+STATIC_URL = '/static/'
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'
+# TMP_STORE = MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+from easy_thumbnails.conf import Settings as thumbnail_settings
+THUMBNAIL_PROCESSORS = (
+    'image_cropping.thumbnail_processors.crop_corners',
+) + thumbnail_settings.THUMBNAIL_PROCESSORS
+

@@ -7,4 +7,6 @@ urlpatterns = patterns('',
    url(r'^accounts/signup', views.signup_view, name='signup'),
    url(r'^accounts/login', views.login_view, name='login'),
    url(r'^accounts/logout', views.logout_view, name='logout'),
+   url(r'^upload/(?P<image_id>\d+)/$', views.upload, name='upload'),
+   url(r'^upload/$', views.upload, name='upload'),
 )
