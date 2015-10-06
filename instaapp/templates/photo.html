@@ -5,7 +5,9 @@
     {% if image %}
         <br/>
         <h4>Photo's {{ image.user.username }}</h4>
-        <img src="{% cropped_thumbnail image "cropping" %}" width="350"/>
+        <div class="photo">
+            <img src="{% cropped_thumbnail image "cropping" %}" width="350"/>
+        </div>
         <div class="detailBox">
             <div class="titleBox">
                 <label>Comment</label>
