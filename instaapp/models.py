@@ -18,3 +18,10 @@ class PhotoInstagram(models.Model):
     def get_cropping_as_list(self):
         if self.cropping:
             return list(map(int, self.cropping.split(',')))
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, related_name="user")
+    photo = models.ForeignKey(PhotoInstagram, related_name="photo")
+    text = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
