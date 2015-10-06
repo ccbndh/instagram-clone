@@ -9,8 +9,9 @@ from .forms import *
 
 @login_required
 def home(request):
+    username = request.user.username
     photos = PhotoInstagram.objects.filter()
-    return render(request, 'index.html', {'photos': photos})
+    return render(request, 'index.html', {'photos': photos, 'username': username})
 
 
 @login_required
