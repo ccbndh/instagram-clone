@@ -5,6 +5,7 @@ from . import views
 urlpatterns = patterns('',
    url(r'^$', views.home, name='home'),
    url(r'^photo/(?P<image_id>\d+)/$', views.photo_view, name='photo'),
+   url(r'^photo/$', views.photo_view, name='photo'),
    url(r'^profile/$', views.profile_view, name='user'),
    url(r'^search/$', views.search_view, name='search'),
    url(r'^accounts/signup', views.signup_view, name='signup'),
