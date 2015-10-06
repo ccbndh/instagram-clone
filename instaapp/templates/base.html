@@ -23,6 +23,10 @@
         <a href="{% url 'instaapp:logout' %}">
             <span>Logout</span>
         </a>
+        <a href="{% url 'instaapp:profile' %}">
+            <span>Profile</span>
+        </a>
+
 
         <div class="search">
             <form class="form-inline" method="GET" action="{% url 'instaapp:search' %}" role="form">{% csrf_token %}
