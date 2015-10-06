@@ -12,17 +12,17 @@ def home(request):
     return render(request, 'index.html')
 
 
-
 def upload(request, image_id=None):
     image = get_object_or_404(PhotoInstagram, pk=image_id) if image_id else None
     form = ImageForm(instance=image)
     if request.method == "POST":
         form = ImageForm(request.POST, request.FILES, instance=image)
         if form.is_valid():
-            image = form.save()
+            image = form.save(commit=False)
+            image.user = request.user
+            image.save()
             return HttpResponseRedirect(reverse('instaapp:upload', args=(image.pk,)))
     return render(request, 'upload.html', {'form': form, 'image': image})
-
 
 
 def login_view(request):

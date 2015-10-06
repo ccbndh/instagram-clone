@@ -4,10 +4,13 @@ from image_cropping import ImageCropField, ImageRatioField
 
 
 class PhotoInstagram(models.Model):
+    user = models.ForeignKey(User, related_name="uploader")
     image_field = ImageCropField(upload_to='image/')
     cropping = ImageRatioField('image_field', '120x100', allow_fullsize=True)
     cropping_free = ImageRatioField('image_field', '300x230',
                                     free_crop=True, size_warning=True)
+    title = models.CharField(max_length=120, blank=True, null=True)
+    created = models.DateTimeField(auto_now=True)
 
     class Meta:
         app_label = 'instaapp'
