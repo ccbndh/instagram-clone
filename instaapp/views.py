@@ -37,11 +37,10 @@ def upload(request, image_id=None):
 def photo_view(request, image_id=None):
     if request.method == "POST":
         photo = get_object_or_404(PhotoInstagram, pk=image_id)
-        if photo:
+        if photo and request.POST.getlist('comment'):
             tags = request.POST['comment']
             for tag in tags.split():
                 if tag.startswith("#"):
-                    print(tag.strip("#"))
                     photo.tags.add(tag.strip("#"))
 
             Comment.objects.create(user=request.user, photo=photo, text=request.POST['comment'], created_on=datetime.datetime.utcnow())
@@ -55,6 +54,13 @@ def photo_view(request, image_id=None):
 def profile_view(request):
     photos = PhotoInstagram.objects.filter(user_id=request.user.id)
     return render(request, 'profile.html', {'photos': photos})
+
+
+@login_required
+def search_view(request):
+    if request.method == "GET" and request.GET.getlist('search'):
+        result = PhotoInstagram.objects.filter(tags__name__in=[request.GET['search']])
+    return render(request, 'result.html', {'result': result})
 
 
 def login_view(request):
