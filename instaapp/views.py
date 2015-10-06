@@ -32,6 +32,12 @@ def upload(request, image_id=None):
     return render(request, 'upload.html', {'form': form, 'image': image})
 
 
+@login_required
+def photo_view(request, image_id=None):
+    image = get_object_or_404(PhotoInstagram, pk=image_id) if image_id else None
+    return render(request, 'photo.html', {'image': image})
+
+
 def login_view(request):
     if request.POST.getlist('login'):
         user = authenticate(username=request.POST['inputUsername'], password=request.POST['inputPassword'])
