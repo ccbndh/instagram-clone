@@ -9,7 +9,8 @@ from .forms import *
 
 @login_required
 def home(request):
-    return render(request, 'index.html')
+    photos = PhotoInstagram.objects.filter()
+    return render(request, 'index.html', {'photos': photos})
 
 
 def upload(request, image_id=None):
