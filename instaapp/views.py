@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
 from .forms import *
+import datetime
 
 @login_required
 def home(request):
@@ -34,8 +35,14 @@ def upload(request, image_id=None):
 
 @login_required
 def photo_view(request, image_id=None):
+    if request.method == "POST":
+        photo = get_object_or_404(PhotoInstagram, pk=image_id)
+        if photo:
+            Comment.objects.create(user=request.user, photo=photo, text=request.POST['comment'], created_on=datetime.datetime.utcnow())
+
     image = get_object_or_404(PhotoInstagram, pk=image_id) if image_id else None
-    return render(request, 'photo.html', {'image': image})
+    comments = Comment.objects.filter(photo_id=image_id)
+    return render(request, 'photo.html', {'image': image, 'comments': comments})
 
 
 def login_view(request):

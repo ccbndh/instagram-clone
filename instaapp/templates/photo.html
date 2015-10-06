@@ -2,21 +2,45 @@
 {% load cropping thumbnail %}
 
 {% block content %}
-{#  <form method="post" id="cropping_form" action="." enctype="multipart/form-data">{% csrf_token %}#}
-{#    {{ form.as_p }}#}
-{#    <input type="submit" value="Save"/>#}
-{#  </form>#}
-  {% if image %}
-    <br />
-{#    <h4>Preview</h4>#}
-      <h5>Photo's {{ image.user.username }}</h5>
-      <img src="{% cropped_thumbnail image "cropping" %}" width="350"/>
-{#      <h5>using cropped_thumbnail tag - free crop </h5>#}
-{#      <img src="{% cropped_thumbnail image "cropping_free" max_size="200x200" %}" />#}
-{#      <h5>using standard thumbnail tag with a cropping field value (string) as box argument</h5>#}
-{#      <img src="{% thumbnail image.image_field 120x100 box=image.cropping crop detail %}">#}
-{#      <h5>using standard thumbnail tag with a list of integers as box argument</h5>#}
-{#      <img src="{% thumbnail image.image_field 120x100 box=image.get_cropping_as_list crop detail %}">#}
-  {% endif %}
+    {% if image %}
+        <br/>
+        <h4>Photo's {{ image.user.username }}</h4>
+        <img src="{% cropped_thumbnail image "cropping" %}" width="350"/>
+        <div class="detailBox">
+            <div class="titleBox">
+                <label>Comment</label>
+                <button type="button" class="close" aria-hidden="true">&times;</button>
+            </div>
+            <div class="commentBox">
+
+            </div>
+            <div class="actionBox">
+                <ul class="commentList">
+                    {% for comment in comments %}
+                        <li>
+                            <div class="username">
+                                <strong>{{comment.user.username}}</strong>
+                            </div>
+                            <div class="commenterImage">
+                            </div>
+                            <div class="commentText">
+                                <p class="">{{comment.text}}</p> <span
+                                    class="date sub-text">on {{ comment.created_on }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <form class="form-inline" method="POST" role="form">{% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" name="comment" type="text" placeholder="Your comments"/>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    {% endif %}
 {% endblock %}
 
