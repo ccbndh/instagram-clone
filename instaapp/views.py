@@ -19,7 +19,7 @@ def upload(request, image_id=None):
     form = ImageForm(instance=image)
 
     if image and request.user.id != image.user.id:
-        return HttpResponse("You does not have permission")
+        return HttpResponse("You does not have permission edit this photo. This photo uploaded by " + request.user.username)
 
     if request.method == "POST":
         form = ImageForm(request.POST, request.FILES, instance=image)
