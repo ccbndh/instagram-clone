@@ -45,6 +45,12 @@ def photo_view(request, image_id=None):
     return render(request, 'photo.html', {'image': image, 'comments': comments})
 
 
+@login_required
+def profile_view(request):
+    photos = PhotoInstagram.objects.filter(user_id=request.user.id)
+    return render(request, 'profile.html', {'photos': photos})
+
+
 def login_view(request):
     if request.POST.getlist('login'):
         user = authenticate(username=request.POST['inputUsername'], password=request.POST['inputPassword'])
