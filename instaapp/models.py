@@ -7,8 +7,7 @@ class PhotoInstagram(models.Model):
     user = models.ForeignKey(User, related_name="uploader")
     image_field = ImageCropField(upload_to='image/')
     cropping = ImageRatioField('image_field', '300x300', allow_fullsize=True)
-    cropping_free = ImageRatioField('image_field', '300x230',
-                                    free_crop=True, size_warning=True)
+    # cropping_free = ImageRatioField('image_field', '300x230', free_crop=True, size_warning=True)
     title = models.CharField(max_length=120, blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
 

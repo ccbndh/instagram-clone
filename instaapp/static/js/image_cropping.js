@@ -89,7 +89,7 @@ var image_cropping = (function ($) {
 
         if ($this.data('allow-fullsize') === true) {
           if(cropping_disabled){
-            jcrop[image_id].release();
+//            jcrop[image_id].release();
             $this.val('-'+$this.val());
           }
           var label = 'allow-fullsize-'+image_id;

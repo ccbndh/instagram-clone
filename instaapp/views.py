@@ -16,6 +16,10 @@ def home(request):
 def upload(request, image_id=None):
     image = get_object_or_404(PhotoInstagram, pk=image_id) if image_id else None
     form = ImageForm(instance=image)
+
+    if request.user.id != image.user.id:
+        return HttpResponse("You does not have permission")
+
     if request.method == "POST":
         form = ImageForm(request.POST, request.FILES, instance=image)
         if form.is_valid():
