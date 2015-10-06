@@ -11,7 +11,7 @@ import datetime
 @login_required
 def home(request):
     username = request.user.username
-    photos = PhotoInstagram.objects.filter()
+    photos = PhotoInstagram.objects.filter().order_by('-created')
     return render(request, 'index.html', {'photos': photos, 'username': username})
 
 

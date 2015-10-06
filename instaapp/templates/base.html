@@ -20,14 +20,14 @@
         <a href="{% url 'instaapp:upload' %}">
             <span>Upload </span>
         </a>
-        <a href="{% url 'instaapp:logout' %}">
-            <span>Logout </span>
-        </a>
         <a href="{% url 'instaapp:profile' %}">
             <span>Profile </span>
         </a>
         <a href="{% url 'instaapp:profile' %}">
             <span> Hello {{ user.username }}</span>
+        </a>
+        <a href="{% url 'instaapp:logout' %}">
+            <span>Logout </span>
         </a>
 
         <div class="search">
