@@ -13,11 +13,12 @@ def home(request):
     return render(request, 'index.html', {'photos': photos})
 
 
+@login_required
 def upload(request, image_id=None):
     image = get_object_or_404(PhotoInstagram, pk=image_id) if image_id else None
     form = ImageForm(instance=image)
 
-    if request.user.id != image.user.id:
+    if image and request.user.id != image.user.id:
         return HttpResponse("You does not have permission")
 
     if request.method == "POST":
