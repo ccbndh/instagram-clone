@@ -38,6 +38,12 @@ def photo_view(request, image_id=None):
     if request.method == "POST":
         photo = get_object_or_404(PhotoInstagram, pk=image_id)
         if photo:
+            tags = request.POST['comment']
+            for tag in tags.split():
+                if tag.startswith("#"):
+                    print(tag.strip("#"))
+                    photo.tags.add(tag.strip("#"))
+
             Comment.objects.create(user=request.user, photo=photo, text=request.POST['comment'], created_on=datetime.datetime.utcnow())
 
     image = get_object_or_404(PhotoInstagram, pk=image_id) if image_id else None

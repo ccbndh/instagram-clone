@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from image_cropping import ImageCropField, ImageRatioField
+from taggit.managers import TaggableManager
 
 
 class PhotoInstagram(models.Model):
@@ -10,6 +11,7 @@ class PhotoInstagram(models.Model):
     # cropping_free = ImageRatioField('image_field', '300x230', free_crop=True, size_warning=True)
     title = models.CharField(max_length=120, blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
+    tags = TaggableManager()
 
     class Meta:
         app_label = 'instaapp'
