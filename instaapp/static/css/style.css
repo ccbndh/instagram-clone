@@ -150,3 +150,21 @@ body {
     border: 1px solid #bbb;
     margin: 50px auto;
 }
+
+.following_list{
+    margin: auto;
+    text-align: center;
+}
+
+.followed_list {
+    margin: auto;
+    text-align: center;
+}
+
+.followed_list a{
+    margin: 0 10px;
+}
+
+.followed_list a{
+    margin: 0 10px;
+}

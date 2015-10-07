@@ -12,7 +12,7 @@
     </div>
 
     <div class="followed_list">
-        <h4>Your are flollowed</h4>
+        <h4>Your are flollowed by</h4>
             {% for user_followed in flollowed_list %}
                 <a href="{% url 'instaapp:user' %}{{ user_followed.user.id }}"><span>{{ user_followed.user.username }}</span></a>
             {% endfor %}
