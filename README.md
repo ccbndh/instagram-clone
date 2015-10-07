@@ -17,4 +17,12 @@ Feature
 * Comments may have #hashtag - auto hightlight for search
 * Search photos by #hashtag
 * Crop photo and edit by recrop in profile
-* Notification when a photo has new comment
+* Notification when a photo has new comment   
+   
+   
+   
+Screenshoot   
+
+![alt tag](https://cloud.githubusercontent.com/assets/8637738/10350174/a7c450f0-6d6c-11e5-99ae-4f1ba7140a56.png)
+![alt tag](https://cloud.githubusercontent.com/assets/8637738/10350227/f7d587b2-6d6c-11e5-89c1-168155da1ce2.png)
+![alt tag](https://cloud.githubusercontent.com/assets/8637738/10350258/330b7d28-6d6d-11e5-876b-32fa09842b9b.png)
