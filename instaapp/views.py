@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from .models import *
 from .forms import *
 import datetime
+from notifications import notify
 
 @login_required
 def home(request):
@@ -44,6 +45,8 @@ def photo_view(request, image_id=None):
                     photo.tags.add(tag.strip("#"))
 
             Comment.objects.create(user=request.user, photo=photo, text=request.POST['comment'], created_on=datetime.datetime.utcnow())
+            if int(request.user.id) != int(photo.user.id):
+                notify.send(request.user, recipient=photo.user, verb='you reached level 10')
 
     image = get_object_or_404(PhotoInstagram, pk=image_id) if image_id else None
     comments = Comment.objects.filter(photo_id=image_id)

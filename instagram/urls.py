@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.conf import settings
+import notifications
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('instaapp.urls', namespace="instaapp")),
+    url('^inbox/notifications/', include(notifications.urls)),
 ]
 
 if settings.DEBUG:

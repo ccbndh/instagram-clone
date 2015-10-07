@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load notifications_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,13 @@
 </head>
 
 <body>
+
+{% notifications_unread as unread_count %}
+
+    {% if unread_count %}
+        <a href="{% url 'notifications:all' %}">You have <strong>{{ unread_count }}</strong> unread notifications.</a>
+    {% endif %}
+
     {% if user.is_authenticated %}
         <div class="menu">
             <a href="{% url 'instaapp:home' %}"
