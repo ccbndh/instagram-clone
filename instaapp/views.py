@@ -70,7 +70,6 @@ def user_view(request, user_id=None):
     except:
         return HttpResponse("User not found")
 
-    show_button_follow = 1
     if request.method == "POST" and request.POST.getlist('follow'):
         if int(request.user.id) == int(user_id):
             return HttpResponse("Yourself")
@@ -81,11 +80,11 @@ def user_view(request, user_id=None):
         except:
             pass
 
-    if request.user.userprofile.follows.all().filter(id=user_id) or int(request.user.id) == int(user_id):
-        show_button_follow = 0
-
     photos = PhotoInstagram.objects.filter(user_id=user_id)
-    return render(request, 'user.html', {'photos': photos, 'show_button_follow': show_button_follow})
+    if request.user.userprofile.follows.all().filter(id=user_id) or int(request.user.id) == int(user_id):
+        return render(request, 'user.html', {'photos': photos})
+
+    return render(request, 'user.html', {'photos': photos, 'show_button_follow': '1'})
 
 
 @login_required
