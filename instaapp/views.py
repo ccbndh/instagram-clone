@@ -58,6 +58,11 @@ def profile_view(request):
 
 @login_required
 def user_view(request, user_id=None):
+    try:
+        User.objects.get(id=user_id)
+    except:
+        return HttpResponse("User not found")
+
     show_button_follow = 1
     if request.method == "POST" and request.POST.getlist('follow'):
         if int(request.user.id) == int(user_id):
