@@ -2,6 +2,14 @@ from django.contrib.auth.models import User
 from django.db import models
 from image_cropping import ImageCropField, ImageRatioField
 from taggit.managers import TaggableManager
+from annoying.fields import AutoOneToOneField
+
+class UserProfile(models.Model):
+    user = AutoOneToOneField('auth.user')
+    follows = models.ManyToManyField('UserProfile', related_name='followed_by')
+
+    def __unicode__(self):
+        return self.user.username
 
 
 class PhotoInstagram(models.Model):
