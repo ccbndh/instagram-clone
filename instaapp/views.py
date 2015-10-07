@@ -70,6 +70,9 @@ def search_view(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse("instaapp:home"))
+
     if request.POST.getlist('login'):
         user = authenticate(username=request.POST['inputUsername'], password=request.POST['inputPassword'])
         if user is not None:
@@ -81,6 +84,9 @@ def login_view(request):
 
 
 def signup_view(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse("instaapp:home"))
+
     if request.POST.getlist('signup'):
         if request.POST['inputPassword'] != request.POST['inputPassword2']:
             return render(request, 'signup.html')
