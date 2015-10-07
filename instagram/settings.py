@@ -39,10 +39,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'taggit',
     'annoying',
-    'notifications',
     'instaapp',
     'easy_thumbnails',
     'image_cropping',
+    'notifications',
 )
 
 MIDDLEWARE_CLASSES = (

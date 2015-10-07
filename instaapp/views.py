@@ -46,7 +46,9 @@ def photo_view(request, image_id=None):
 
             Comment.objects.create(user=request.user, photo=photo, text=request.POST['comment'], created_on=datetime.datetime.utcnow())
             if int(request.user.id) != int(photo.user.id):
-                notify.send(request.user, recipient=photo.user, verb='you reached level 10')
+                # notify.send(request.user, recipient=photo.user, verb=request.user.username + ' has comment ' + request.POST['comment']) + ' on your photo'
+                comment_add = 'comment_add'
+                notify.send(request.user, recipient=photo.user, verb=request.user.username + ' has comment ' + request.POST['comment'] + ' on your photo', action_object=photo, target=photo)
 
     image = get_object_or_404(PhotoInstagram, pk=image_id) if image_id else None
     comments = Comment.objects.filter(photo_id=image_id)
@@ -76,7 +78,6 @@ def user_view(request, user_id=None):
             current_user = User.objects.get(id=request.user.id)
             follow_user = User.objects.get(id=user_id)
             current_user.userprofile.follows.add(follow_user.userprofile)
-            print(current_user.userprofile.follows.all())
         except:
             pass
 

@@ -18,7 +18,7 @@
 {% notifications_unread as unread_count %}
 
     {% if unread_count %}
-        <a href="{% url 'notifications:all' %}">You have <strong>{{ unread_count }}</strong> unread notifications.</a>
+        <a href="{% url 'notifications:all' %}">You have <strong>{{ unread_count }}</strong> notifications.</a>
     {% endif %}
 
     {% if user.is_authenticated %}
