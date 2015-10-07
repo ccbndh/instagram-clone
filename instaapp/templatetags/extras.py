@@ -6,5 +6,12 @@ register = template.Library()
 
 @register.simple_tag
 def auto_add_link_hashtag(comment):
-    # import pdb;pdb.set_trace()
-    return re.sub('^#(\w+)(.*)', r'<a href="http://statigr.am/tag/\1"></a>\2', comment)
+    res = ''
+    for tag in comment.split():
+        if tag.startswith("#"):
+            print(tag.strip("#"))
+            res += '<a href="http://127.0.0.1:8000/search/?search=' + tag.strip("#") + '">#' + tag.strip("#") + '</a>'
+        else:
+            res += tag
+        res += ' '
+    return res
