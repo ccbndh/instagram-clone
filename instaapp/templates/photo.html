@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load cropping thumbnail %}
+{% load extras %}
 
 {% block content %}
     {% if image %}
@@ -26,7 +27,7 @@
                             <div class="commenterImage">
                             </div>
                             <div class="commentText">
-                                <p class="">{{comment.text}}</p> <span
+                                <p class="">{%  auto_add_link_hashtag comment.text %}</p> <span
                                     class="date sub-text">on {{ comment.created_on }}</span>
                             </div>
                         </li>

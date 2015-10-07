@@ -130,3 +130,14 @@ body {
     border:0;
     background:transparent;
 }
+
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2){
+    width: 80%;
+}
+
+
+.detailBox {
+    width: 430px;
+    border: 1px solid #bbb;
+    margin: 50px auto;
+}
