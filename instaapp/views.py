@@ -61,7 +61,7 @@ def user_view(request, user_id=None):
     show_button_follow = 1
     if request.method == "POST" and request.POST.getlist('follow'):
         if int(request.user.id) == int(user_id):
-            return HttpResponse("You can't follow yourself")
+            return HttpResponse("Yourself")
         try:
             current_user = User.objects.get(id=request.user.id)
             follow_user = User.objects.get(id=user_id)
@@ -70,7 +70,7 @@ def user_view(request, user_id=None):
         except:
             pass
 
-    if request.user.userprofile.follows.all().filter(id=user_id):
+    if request.user.userprofile.follows.all().filter(id=user_id) or int(request.user.id) == int(user_id):
         show_button_follow = 0
 
     photos = PhotoInstagram.objects.filter(user_id=user_id)
