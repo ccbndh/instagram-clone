@@ -12,7 +12,7 @@ Feature
 * User registration/sign in/sign out
 * Photo feeds as home page on user upload new photo
 * Upload a new photo, each photo can have comments
-* Follow a user by button follow in url /user/:id, it's not needed to send email
+* Follow a user by button follow in url /user/:id, it's not needed to send email, default user is followed yourself
 * User profile page that shows user information as well as all his posted photos, user following, be followed
 * Comments may have #hashtag - auto hightlight for search
 * Search photos by #hashtag
