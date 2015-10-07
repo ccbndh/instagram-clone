@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load cropping thumbnail %}
+
+{% block title %}Instagram clone - home page{% endblock %}
+
+{% block content %}
+{#    <h3> Hello {{ username }}</h3>#}
+    {% for photo in photos %}
+        <div href="" class="photo">
+            <a href="{% url 'instaapp:photo' %}{{ photo.id }}">
+                <img src="{% cropped_thumbnail photo "cropping" %}" width="350" height=""/>
+            </a>
+        </div>
+
+    {% endfor %}
+{% endblock %}

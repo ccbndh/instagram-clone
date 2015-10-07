@@ -57,6 +57,12 @@ def profile_view(request):
 
 
 @login_required
+def user_view(request, user_id=None):
+    photos = PhotoInstagram.objects.filter(user_id=user_id)
+    return render(request, 'user.html', {'photos': photos})
+
+
+@login_required
 def search_view(request):
     if request.method == "GET" and request.GET.getlist('search'):
         result = PhotoInstagram.objects.filter(tags__name__in=[request.GET['search']])
