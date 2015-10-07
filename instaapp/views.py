@@ -52,8 +52,10 @@ def photo_view(request, image_id=None):
 
 @login_required
 def profile_view(request):
+    following_list = request.user.userprofile.follows.all()
+    flollowed_list = request.user.userprofile.followed_by.all()
     photos = PhotoInstagram.objects.filter(user_id=request.user.id)
-    return render(request, 'profile.html', {'photos': photos})
+    return render(request, 'profile.html', {'photos': photos, 'following_list': following_list, 'flollowed_list': flollowed_list})
 
 
 @login_required

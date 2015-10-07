@@ -4,7 +4,20 @@
 {% block title %}Instagram clone - home page{% endblock %}
 
 {% block content %}
-{#    <h3> Hello {{ username }}</h3>#}
+    <div class="following_list">
+        <h4>Your are following</h4>
+            {% for user_following in following_list %}
+                <a href="{% url 'instaapp:user' %}{{ user_following.user.id }}"><span>{{ user_following.user.username }}</span></a>
+            {% endfor %}
+    </div>
+
+    <div class="followed_list">
+        <h4>Your are flollowed</h4>
+            {% for user_followed in flollowed_list %}
+                <a href="{% url 'instaapp:user' %}{{ user_followed.user.id }}"><span>{{ user_followed.user.username }}</span></a>
+            {% endfor %}
+    </div>
+
     {% for photo in photos %}
         <div href="" class="photo">
             <a href="{% url 'instaapp:upload' %}{{ photo.id }}">
